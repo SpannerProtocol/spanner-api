@@ -1,0 +1,8 @@
+{
+  "name": "@spanner/type-definitions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@open-web3/orml-type-definitions": "^0.9.4-0"
+  }
+}
