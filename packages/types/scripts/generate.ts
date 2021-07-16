@@ -16,7 +16,7 @@ import * as spannerDefinitions from '../src/interfaces/definitions';
 
 import { ModuleTypes } from '@polkadot/typegen/util/imports';
 import { TypeRegistry } from '@polkadot/types';
-import { registerDefinitions } from '@polkadot/typegen/util';
+import { registerDefinitions, writeFile, HEADER } from '@polkadot/typegen/util';
 import { Metadata } from '@polkadot/metadata';
 
 // Only keep our own modules to avoid conflicts with the ones provided by polkadot.js
@@ -84,4 +84,16 @@ generateDefaultQuery(
 generateDefaultRpc(
   'packages/types/src/interfaces/augment-api-rpc.ts',
   definitions
+);
+
+writeFile('packages/types/src/interfaces/augment-api.ts', (): string =>
+  [
+    HEADER('chain'),
+    ...[
+      '@polkadot/api/augment/rpc',
+      ...['consts', 'query', 'tx', 'rpc']
+        .filter((key) => !!key)
+        .map((key) => `./augment-api-${key}`)
+    ].map((path) => `import '${path}';\n`)
+  ].join('')
 );

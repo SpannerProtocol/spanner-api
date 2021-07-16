@@ -5,8 +5,8 @@
     "**/build/**/*"
 ],
     "compilerOptions": {
-    "target": "es2019",
-        "module": "CommonJS",
+        "module": "commonjs",
+        "target": "es2017",
         "baseUrl": ".",
         "resolveJsonModule": true,
         "paths": {
