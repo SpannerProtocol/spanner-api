@@ -6,3 +6,4 @@ packages/types/src/interfaces/augment*.ts
 packages/types/src/interfaces/**/index.ts
 packages/types/src/interfaces/**/types.ts
 packages/type-definitions/src/json/*
+packages/**/build/*
