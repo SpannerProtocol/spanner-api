@@ -2,6 +2,7 @@ const base = require('@open-web3/dev-config/config/eslint.cjs');
 
 module.exports = {
     ...base,
+    root:true,
     ignorePatterns: [
         '.eslintrc.cjs',
         '.eslintrc.js',
