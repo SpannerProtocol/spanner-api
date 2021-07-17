@@ -14,6 +14,8 @@ import {
 
 import './interfaces/augment-api';
 import './interfaces/augment-api-consts';
+import './interfaces/augment-api-errors';
+import './interfaces/augment-api-events';
 import './interfaces/augment-api-query';
 import './interfaces/augment-api-rpc';
 import './interfaces/augment-api-tx';
