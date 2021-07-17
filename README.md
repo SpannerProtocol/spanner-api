@@ -13,6 +13,11 @@ This library provides additional typing to access Spanner / Hammer through [polk
 "@spanner/api": "./spanner-api/packages/api/build",
 "@spanner/type-definitions": "./spanner-api/packages/type-definitions/build",
 "@spanner/types": "./spanner-api/packages/types/build",
+
+#add following in parent tsconfig.json
+"@polkadot/api/augment": ["spanner-api/packages/types/src/interfaces/augment-api.ts"],
+"@polkadot/types/augment": ["spanner-api/packages/types/src/interfaces/augment-types.ts"],
+"@polkadot/types/types": ["spanner-api/packages/types/src/interfaces/augment-types.ts"]
 ```
 
 ###To Use
