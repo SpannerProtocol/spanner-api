@@ -50,13 +50,13 @@ function getBundle(versioned: OverrideVersionedType[]) {
 
 export const typesBundle = {
   spec: {
-    spanner: getBundle(spannerVersioned),
+    spanner: getBundle(spannerVersioned)
   }
 };
 
 // Type overrides have priority issues
 export const typesBundleForPolkadot = {
   spec: {
-    spanner: getBundle(spannerVersioned),
+    spanner: getBundle(spannerVersioned)
   }
 };
