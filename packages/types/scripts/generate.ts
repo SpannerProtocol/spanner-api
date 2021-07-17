@@ -4,7 +4,9 @@ import {
   generateDefaultConsts,
   generateDefaultQuery,
   generateDefaultTx,
-  generateDefaultRpc
+  generateDefaultRpc,
+  generateDefaultErrors,
+  generateDefaultEvents
 } from '@polkadot/typegen/generate';
 import metadataJSON from '../src/metadata/metadata.json';
 
@@ -40,14 +42,19 @@ generateInterfaceTypes(
   definitions,
   'packages/types/src/interfaces/augment-types.ts'
 );
+
 generateDefaultConsts(
   'packages/types/src/interfaces/augment-api-consts.ts',
   metaHex,
   definitions
 );
-
-generateDefaultTx(
-  'packages/types/src/interfaces/augment-api-tx.ts',
+generateDefaultErrors(
+  'packages/types/src/interfaces/augment-api-errors.ts',
+  metaHex,
+  definitions
+);
+generateDefaultEvents(
+  'packages/types/src/interfaces/augment-api-events.ts',
   metaHex,
   definitions
 );
@@ -60,13 +67,18 @@ generateDefaultRpc(
   'packages/types/src/interfaces/augment-api-rpc.ts',
   definitions
 );
+generateDefaultTx(
+  'packages/types/src/interfaces/augment-api-tx.ts',
+  metaHex,
+  definitions
+);
 
 writeFile('packages/types/src/interfaces/augment-api.ts', (): string =>
   [
     HEADER('chain'),
     ...[
       '@polkadot/api/augment/rpc',
-      ...['consts', 'query', 'tx', 'rpc']
+      ...['consts', 'errors', 'events', 'query', 'tx', 'rpc']
         .filter((key) => !!key)
         .map((key) => `./augment-api-${key}`)
     ].map((path) => `import '${path}';\n`)
