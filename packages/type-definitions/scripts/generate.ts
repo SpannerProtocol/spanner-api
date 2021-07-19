@@ -1,4 +1,4 @@
-import { types, typesBundleForPolkadot, rpc } from '@spanner/type-definitions';
+import { types, typesBundleForPolkadot, rpc } from '../src';
 import fs from 'fs';
 
 fs.writeFileSync(

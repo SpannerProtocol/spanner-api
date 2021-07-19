@@ -3,7 +3,7 @@ import {
   types as spannerTypes,
   typesAlias as spannerTypesAlias,
   rpc as spannerRpc
-} from '@spanner/type-definitions';
+} from '../../type-definitions/src';
 import {
   OverrideBundleType,
   OverrideModuleType,

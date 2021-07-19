@@ -1,4 +1,4 @@
 import { Definitions } from '@polkadot/types/types';
-import dex from '@spanner/type-definitions/dex';
+import dex from '../../../../type-definitions/src/dex';
 
 export default dex as Definitions;

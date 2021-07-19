@@ -9,30 +9,10 @@
         "target": "es2017",
         "baseUrl": ".",
         "resolveJsonModule": true,
-        "paths": {
-        "@spanner/api": [
-            "packages/api/src"
-        ],
-            "@spanner/api/*": [
-            "packages/api/src/*"
-        ],
-            "@spanner/types": [
-            "packages/types/src"
-        ],
-            "@spanner/types/*": [
-            "packages/types/src/*"
-        ],
-            "@spanner/type-definitions": [
-            "packages/type-definitions/src"
-        ],
-            "@spanner/type-definitions/*": [
-            "packages/type-definitions/src/*"
-        ],
-    },
-    "skipLibCheck": true,
+        "skipLibCheck": true,
         "typeRoots": [
         "./node_modules/@polkadot/ts",
         "./node_modules/@types"
-    ]
-}
+        ]
+    }
 }

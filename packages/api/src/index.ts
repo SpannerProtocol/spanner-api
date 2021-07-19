@@ -4,7 +4,7 @@ import {
   types as spannerTypes,
   typesAlias as spannerTypesAlias,
   typesBundle as spannerTypesBundle
-} from '@spanner/types';
+} from '../../types/src';
 
 export const defaultOptions: ApiOptions = {
   types: spannerTypes,
