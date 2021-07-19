@@ -9618,26 +9618,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    "@babel/core": ^7.10.2
-    "@babel/register": ^7.10.1
-    "@babel/runtime": ^7.10.2
-    "@open-web3/dev-config": ^0.1.12
-    "@open-web3/orml-types": ^0.9.4-0
-    "@open-web3/util": ^0.9.4-0
-    "@polkadot/api": 5.0.1
-    "@polkadot/typegen": 5.0.1
-    "@polkadot/types": 5.0.1
-    "@types/jest": ^25.2.3
-    ts-node: ^8.6.1
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-  languageName: unknown
-  linkType: soft
-
 "rsvp@npm:^4.8.4":
   version: 4.8.5
   resolution: "rsvp@npm:4.8.5"
@@ -10085,6 +10065,26 @@ resolve@^2.0.0-next.3:
   checksum: cd24efb3b8fa69b64bf28e3c1b1a500de77e84260c5b7f2b873f88284df17974157cc88d386ee9b6d081f08fdd8242f3fc05c953685a6ad81aad94c7393dedea
   languageName: node
   linkType: hard
+
+"spanner-api@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "spanner-api@workspace:."
+  dependencies:
+    "@babel/core": ^7.10.2
+    "@babel/register": ^7.10.1
+    "@babel/runtime": ^7.10.2
+    "@open-web3/dev-config": ^0.1.12
+    "@open-web3/orml-types": ^0.9.4-0
+    "@open-web3/util": ^0.9.4-0
+    "@polkadot/api": 5.0.1
+    "@polkadot/typegen": 5.0.1
+    "@polkadot/types": 5.0.1
+    "@types/jest": ^25.2.3
+    ts-node: ^8.6.1
+    tsconfig-paths: ^3.9.0
+    typescript: ^4.2.4
+  languageName: unknown
+  linkType: soft
 
 "spdx-correct@npm:^3.0.0":
   version: 3.1.1

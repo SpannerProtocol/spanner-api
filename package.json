@@ -1,4 +1,5 @@
 {
+  "name": "spanner-api",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -8,7 +9,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn build:interfaces && polkadot-dev-build-ts",
+    "build": "yarn build:interfaces",
     "build:release": "polkadot-ci-ghact-build",
     "build:interfaces": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/generate.ts && node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "lint": "polkadot-dev-run-lint",

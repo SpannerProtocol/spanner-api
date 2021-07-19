@@ -28,7 +28,7 @@ const { runtime: _runtime, ...ormlModulesDefinitions } = ormlDefinitions;
 const definitions = {
   '@polkadot/types/interfaces': substrateDefinitions,
   '@open-web3/orml-types/interfaces': { tokens: ormlModulesDefinitions.tokens },
-  '@spanner/types/interfaces': spannerDefinitions
+  'packages/types/src/interfaces': spannerDefinitions
 } as unknown as {
   [importPath: string]: Record<string, ModuleTypes>;
 };
@@ -36,7 +36,7 @@ const metaHex = metadataJSON.result;
 generateTsDef(
   definitions,
   'packages/types/src/interfaces',
-  '@spanner/types/interfaces'
+  'packages/types/src/interfaces'
 );
 generateInterfaceTypes(
   definitions,
