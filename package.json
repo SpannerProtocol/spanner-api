@@ -9,7 +9,7 @@
   ],
   "resolutions": {
     "typescript": "^4.2.4",
-    "@polkadot/api": "3.10.2"
+    "@polkadot/api": "5.0.1"
   },
   "scripts": {
     "build": "yarn build:interfaces && polkadot-dev-build-ts",
