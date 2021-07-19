@@ -19,9 +19,6 @@
     "check-deps": "./node_modules/@open-web3/util/scripts/check-deps.js yarn.lock @polkadot/ @open-web3/"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/register": "^7.10.1",
-    "@babel/runtime": "^7.10.2",
     "@open-web3/dev-config": "^0.1.12",
     "@open-web3/orml-types": "^0.9.4-0",
     "@open-web3/util": "^0.9.4-0",
