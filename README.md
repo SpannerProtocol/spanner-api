@@ -2,7 +2,9 @@
 
 This library provides additional typing to access Spanner / Hammer through [polkadot.js/api](https://github.com/polkadot-js/api)
 
-###To Install
+NOTE: make sure your application is running the same polkadot/api version as used to compile this library
+
+### To Install
 ```bash
  git submodule add https://github.com/SpannerProtocol/spanner-api.git
  cd  spanner-api
@@ -16,7 +18,7 @@ This library provides additional typing to access Spanner / Hammer through [polk
 },
 ```
 
-###To Use
+### To Use
 ```typescript
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { ApiOptions } from '@polkadot/api/types';

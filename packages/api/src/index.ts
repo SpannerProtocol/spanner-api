@@ -17,7 +17,11 @@ export const options = ({
       spanner: {
         ...spannerTypesBundle?.spec?.spanner,
         ...typesBundle?.spec?.spanner
-      }
+      },
+      hammer: {
+        ...spannerTypesBundle?.spec?.hammer,
+        ...typesBundle?.spec?.hammer
+      },
     }
   },
   ...otherOptions
