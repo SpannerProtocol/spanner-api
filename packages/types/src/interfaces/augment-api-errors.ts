@@ -196,9 +196,13 @@ declare module '@polkadot/api/types/errors' {
        **/
       DefaultTargetAvailable: AugmentedError<ApiType>;
       /**
-       * cannot fulfill requested seats as they have ran out
+       * cannot fulfill requested share as they have ran out
        **/
-      DpoNotEnoughSeats: AugmentedError<ApiType>;
+      DpoNotEnoughShare: AugmentedError<ApiType>;
+      /**
+       * dpo target to its child dpo
+       **/
+      DpoTargetToChild: AugmentedError<ApiType>;
       /**
        * not at the right state. check argument requirement
        **/
@@ -208,9 +212,9 @@ declare module '@polkadot/api/types/errors' {
        **/
       ExceededRateCap: AugmentedError<ApiType>;
       /**
-       * exceeded the allowed seat cap, 30 for DPO, 20 for manager, 10 for passenger
+       * exceeded the allowed share cap, 50% for DPO, 30% for manager and passenger
        **/
-      ExceededSeatCap: AugmentedError<ApiType>;
+      ExceededShareCap: AugmentedError<ApiType>;
       /**
        * InvalidBuyerType <= None
        **/
@@ -236,6 +240,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       InvalidTargetForDpo: AugmentedError<ApiType>;
       /**
+       * new target should be be other dpo or cabin
+       **/
+      NewTargetSameAsOld: AugmentedError<ApiType>;
+      /**
        * when the milestone vector is empty
        **/
       NoMilestoneRewardWaiting: AugmentedError<ApiType>;
@@ -244,13 +252,32 @@ declare module '@polkadot/api/types/errors' {
        **/
       NoPermission: AugmentedError<ApiType>;
       /**
+       * not allowed to change larger target
+       **/
+      NotAllowedToChangeLargerTarget: AugmentedError<ApiType>;
+      /**
+       * not allowed to change new target
+       **/
+      NotAllowedToChangeTarget: AugmentedError<ApiType>;
+      /**
        * all yield has been released
        **/
       NoYieldToRelease: AugmentedError<ApiType>;
       /**
-       * must purchase at least 1 seat
+       * must purchase all remaining shares
        **/
-      PurchaseAtLeastOneSeat: AugmentedError<ApiType>;
+      PurchaseAllRemainder: AugmentedError<ApiType>;
+      /**
+       * must purchase at least 1%
+       **/
+      PurchaseAtLeastOnePercent: AugmentedError<ApiType>;
+      /**
+       * must purchase at least 3% for DPO
+       **/
+      PurchaseAtLeastThreePercentForDpo: AugmentedError<ApiType>;
+      /**
+       * setting reward for a past milestone
+       **/
       RewardMilestoneInvalid: AugmentedError<ApiType>;
       /**
        * yield / bonus amount must be greater than or equal to zero for travel_cabin and greater than zero for milestone reward
@@ -264,6 +291,9 @@ declare module '@polkadot/api/types/errors' {
        * target dpo or travel_cabin deposit required too small
        **/
       TargetValueTooSmall: AugmentedError<ApiType>;
+      /**
+       * must have at least one stockpile
+       **/
       TooLittleIssued: AugmentedError<ApiType>;
       /**
        * TravelCabin has not matured

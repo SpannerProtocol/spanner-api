@@ -20,7 +20,7 @@ import type { ElectionCompute, EraIndex } from '@polkadot/types/interfaces/staki
 import type { DispatchError, DispatchInfo, DispatchResult } from '@polkadot/types/interfaces/system';
 import type { BountyIndex } from '@polkadot/types/interfaces/treasury';
 import type { Timepoint } from '@polkadot/types/interfaces/utility';
-import type { Buyer, DpoIndex, TravelCabinIndex, TravelCabinInventoryIndex } from 'packages/types/src/interfaces/bulletTrain';
+import type { Buyer, DpoIndex, Target, TravelCabinIndex, TravelCabinInventoryIndex } from 'packages/types/src/interfaces/bulletTrain';
 import type { TradingPair } from 'packages/types/src/interfaces/dex';
 import type { AmountOf, CurrencyId, CurrencyIdOf } from 'packages/types/src/interfaces/primitives';
 import type { PoolId } from 'packages/types/src/interfaces/rewards';
@@ -175,12 +175,12 @@ declare module '@polkadot/api/types/events' {
       CreatedDpo: AugmentedEvent<ApiType, [AccountId, DpoIndex]>;
       CreatedMilestoneReward: AugmentedEvent<ApiType, [AccountId, CurrencyId, Balance, Balance]>;
       CreatedTravelCabin: AugmentedEvent<ApiType, [AccountId, CurrencyId, TravelCabinIndex]>;
-      DpoTargetPurchased: AugmentedEvent<ApiType, [AccountId, Buyer, DpoIndex, u8]>;
+      DpoTargetChanged: AugmentedEvent<ApiType, [AccountId, DpoIndex, Target]>;
+      DpoTargetPurchased: AugmentedEvent<ApiType, [AccountId, Buyer, DpoIndex, Balance]>;
       FareWithdrawnFromTravelCabin: AugmentedEvent<ApiType, [AccountId, TravelCabinIndex, TravelCabinInventoryIndex]>;
       IssuedAdditionalTravelCabin: AugmentedEvent<ApiType, [AccountId, CurrencyId, TravelCabinIndex, u8]>;
       MilestoneRewardReleased: AugmentedEvent<ApiType, [AccountId, CurrencyId, Balance, Balance]>;
       TravelCabinTargetPurchased: AugmentedEvent<ApiType, [AccountId, Buyer, TravelCabinIndex, TravelCabinInventoryIndex]>;
-      TreasureHunted: AugmentedEvent<ApiType, [AccountId, TravelCabinIndex, TravelCabinInventoryIndex, Balance]>;
       WithdrewFareFromDpo: AugmentedEvent<ApiType, [AccountId, DpoIndex]>;
       YieldReleased: AugmentedEvent<ApiType, [AccountId, DpoIndex]>;
       YieldWithdrawnFromTravelCabin: AugmentedEvent<ApiType, [AccountId, TravelCabinIndex, TravelCabinInventoryIndex, Balance]>;

@@ -544,7 +544,7 @@ declare module '@polkadot/api/types/submittable' {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     bulletTrain: {
-      createDpo: AugmentedSubmittable<(name: Bytes | string | Uint8Array, target: Target | { Dpo: any } | { TravelCabin: any } | string | Uint8Array, managerSeats: u8 | AnyNumber | Uint8Array, baseFee: u32 | AnyNumber | Uint8Array, directReferralRate: u32 | AnyNumber | Uint8Array, end: BlockNumber | AnyNumber | Uint8Array, referrer: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Target, u8, u32, u32, BlockNumber, Option<AccountId>]>;
+      createDpo: AugmentedSubmittable<(name: Bytes | string | Uint8Array, target: Target | { Dpo: any } | { TravelCabin: any } | string | Uint8Array, managerPurchaseAmount: Balance | AnyNumber | Uint8Array, baseFee: u32 | AnyNumber | Uint8Array, directReferralRate: u32 | AnyNumber | Uint8Array, end: BlockNumber | AnyNumber | Uint8Array, referrer: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Target, Balance, u32, u32, BlockNumber, Option<AccountId>]>;
       /**
        * milestone reward triggered by total ticket fairs of travel cabin
        * will be given to all passengers by their paid ticket fair.
@@ -561,10 +561,14 @@ declare module '@polkadot/api/types/submittable' {
        * only for the dpo manager to call within the grace period.
        * any member can call after the grace period
        **/
-      dpoBuyDpoSeats: AugmentedSubmittable<(buyerDpoIdx: DpoIndex | AnyNumber | Uint8Array, targetDpoIdx: DpoIndex | AnyNumber | Uint8Array, numberOfSeats: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, DpoIndex, u8]>;
+      dpoBuyDpoShare: AugmentedSubmittable<(buyerDpoIdx: DpoIndex | AnyNumber | Uint8Array, targetDpoIdx: DpoIndex | AnyNumber | Uint8Array, amount: Balance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, DpoIndex, Balance]>;
       dpoBuyTravelCabin: AugmentedSubmittable<(buyerDpoIdx: DpoIndex | AnyNumber | Uint8Array, travelCabinIdx: TravelCabinIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, TravelCabinIndex]>;
+      /**
+       * dpo can change its target at any time when the target is unavailable
+       **/
+      dpoChangeTarget: AugmentedSubmittable<(buyerDpoIdx: DpoIndex | AnyNumber | Uint8Array, newTarget: Target | { Dpo: any } | { TravelCabin: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, Target]>;
       issueAdditionalTravelCabin: AugmentedSubmittable<(travelCabinIdx: TravelCabinIndex | AnyNumber | Uint8Array, numberMore: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [TravelCabinIndex, u8]>;
-      passengerBuyDpoSeats: AugmentedSubmittable<(targetDpoIdx: DpoIndex | AnyNumber | Uint8Array, numberOfSeats: u8 | AnyNumber | Uint8Array, referrerAccount: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, u8, Option<AccountId>]>;
+      passengerBuyDpoShare: AugmentedSubmittable<(targetDpoIdx: DpoIndex | AnyNumber | Uint8Array, amount: Balance | AnyNumber | Uint8Array, referrerAccount: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, Balance, Option<AccountId>]>;
       passengerBuyTravelCabin: AugmentedSubmittable<(travelCabinIdx: TravelCabinIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [TravelCabinIndex]>;
       /**
        * anyone can call this function
@@ -580,6 +584,7 @@ declare module '@polkadot/api/types/submittable' {
        * anyone can call this function
        **/
       releaseYieldFromDpo: AugmentedSubmittable<(dpoIdx: DpoIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex]>;
+      setDpoBaseFee: AugmentedSubmittable<(dpoIdx: DpoIndex | AnyNumber | Uint8Array, baseFee: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [DpoIndex, u32]>;
       withdrawFareFromTravelCabin: AugmentedSubmittable<(travelCabinIdx: TravelCabinIndex | AnyNumber | Uint8Array, travelCabinNumber: TravelCabinInventoryIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [TravelCabinIndex, TravelCabinInventoryIndex]>;
       withdrawYieldFromTravelCabin: AugmentedSubmittable<(travelCabinIdx: TravelCabinIndex | AnyNumber | Uint8Array, travelCabinNumber: TravelCabinInventoryIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [TravelCabinIndex, TravelCabinInventoryIndex]>;
       /**

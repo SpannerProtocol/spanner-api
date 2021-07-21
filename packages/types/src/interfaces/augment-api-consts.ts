@@ -84,14 +84,17 @@ declare module '@polkadot/api/types/consts' {
       cabinBonusRewardMinimum: Balance & AugmentedConst<ApiType>;
       cabinYieldRewardMinimum: Balance & AugmentedConst<ApiType>;
       dpoMakePurchaseGracePeriod: BlockNumber & AugmentedConst<ApiType>;
-      dpoSeatCap: u8 & AugmentedConst<ApiType>;
-      dpoSeats: u8 & AugmentedConst<ApiType>;
+      dpoPartialBuySharePercentMin: ITuple<[u8, u8]> & AugmentedConst<ApiType>;
+      dpoSharePercentCap: ITuple<[u8, u8]> & AugmentedConst<ApiType>;
+      dpoSharePercentMinimum: ITuple<[u8, u8]> & AugmentedConst<ApiType>;
+      managementBaseFeeCap: u32 & AugmentedConst<ApiType>;
+      managementFeeCap: u32 & AugmentedConst<ApiType>;
       managerSlashPerThousand: u32 & AugmentedConst<ApiType>;
       milestoneRewardMinimum: Balance & AugmentedConst<ApiType>;
       moduleId: ModuleId & AugmentedConst<ApiType>;
-      passengerSeatCap: u8 & AugmentedConst<ApiType>;
+      passengerSharePercentCap: ITuple<[u8, u8]> & AugmentedConst<ApiType>;
+      passengerSharePercentMinimum: ITuple<[u8, u8]> & AugmentedConst<ApiType>;
       releaseYieldGracePeriod: BlockNumber & AugmentedConst<ApiType>;
-      treasureHuntingGracePeriod: BlockNumber & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
