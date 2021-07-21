@@ -16,6 +16,7 @@ import {
 } from '@open-web3/orml-type-definitions';
 
 import spannerVersioned from './spec/spanner';
+import hammerVersioned from './spec/hammer';
 
 const spannerDef = {
   bulletTrain,
@@ -50,13 +51,15 @@ function getBundle(versioned: OverrideVersionedType[]) {
 
 export const typesBundle = {
   spec: {
-    spanner: getBundle(spannerVersioned)
+    spanner: getBundle(spannerVersioned),
+    hammer: getBundle(hammerVersioned)
   }
 };
 
 // Type overrides have priority issues
 export const typesBundleForPolkadot = {
   spec: {
-    spanner: getBundle(spannerVersioned)
+    spanner: getBundle(spannerVersioned),
+    hammer: getBundle(hammerVersioned)
   }
 };
