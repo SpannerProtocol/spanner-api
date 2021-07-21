@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, DoNotConstruct, Enum, GenericAccountId, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericLookupSource, GenericMultiAddress, Int, Null, Option, StorageKey, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from '@polkadot/types';
+import type { Bytes, Compact, DoNotConstruct, Enum, GenericAccountId, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericLookupSource, GenericMultiAddress, Int, Null, StorageKey, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from '@polkadot/types';
 import type { ITuple } from '@polkadot/types/types';
 import type { AuthorityId } from '@polkadot/types/interfaces/consensus';
 import type { Signature } from '@polkadot/types/interfaces/extrinsics';
@@ -51,12 +51,6 @@ export interface ChangesTrieConfiguration extends Struct {
   readonly digestLevels: u32;
 }
 
-/** @name ChangesTrieSignal */
-export interface ChangesTrieSignal extends Enum {
-  readonly isNewConfiguration: boolean;
-  readonly asNewConfiguration: Option<ChangesTrieConfiguration>;
-}
-
 /** @name CodecHash */
 export interface CodecHash extends Hash {}
 
@@ -87,12 +81,7 @@ export interface DigestItem extends Enum {
   readonly asSeal: Seal;
   readonly isPreRuntime: boolean;
   readonly asPreRuntime: PreRuntime;
-  readonly isChangesTrieSignal: boolean;
-  readonly asChangesTrieSignal: ChangesTrieSignal;
 }
-
-/** @name EncodedJustification */
-export interface EncodedJustification extends Bytes {}
 
 /** @name ExtrinsicsWeight */
 export interface ExtrinsicsWeight extends Struct {
@@ -133,9 +122,6 @@ export interface H2048 extends U8aFixed {}
 /** @name H256 */
 export interface H256 extends U8aFixed {}
 
-/** @name H32 */
-export interface H32 extends U8aFixed {}
-
 /** @name H512 */
 export interface H512 extends U8aFixed {}
 
@@ -154,12 +140,6 @@ export interface Header extends Struct {
   readonly digest: Digest;
 }
 
-/** @name HeaderPartial */
-export interface HeaderPartial extends Struct {
-  readonly parentHash: Hash;
-  readonly number: BlockNumber;
-}
-
 /** @name I32F32 */
 export interface I32F32 extends Int {}
 
@@ -170,10 +150,7 @@ export interface Index extends u32 {}
 export interface IndicesLookupSource extends GenericLookupSource {}
 
 /** @name Justification */
-export interface Justification extends ITuple<[ConsensusEngineId, EncodedJustification]> {}
-
-/** @name Justifications */
-export interface Justifications extends Vec<Justification> {}
+export interface Justification extends Bytes {}
 
 /** @name KeyTypeId */
 export interface KeyTypeId extends u32 {}
@@ -199,16 +176,6 @@ export interface Moment extends UInt {}
 /** @name MultiAddress */
 export interface MultiAddress extends GenericMultiAddress {}
 
-/** @name MultiSigner */
-export interface MultiSigner extends Enum {
-  readonly isEd25519: boolean;
-  readonly asEd25519: U8aFixed;
-  readonly isSr25519: boolean;
-  readonly asSr25519: U8aFixed;
-  readonly isEcdsa: boolean;
-  readonly asEcdsa: U8aFixed;
-}
-
 /** @name OpaqueCall */
 export interface OpaqueCall extends Bytes {}
 
@@ -226,9 +193,6 @@ export interface OriginCaller extends Enum {
   readonly isSystem: boolean;
   readonly asSystem: SystemOrigin;
 }
-
-/** @name PalletId */
-export interface PalletId extends LockIdentifier {}
 
 /** @name PalletsOrigin */
 export interface PalletsOrigin extends OriginCaller {}
@@ -297,18 +261,9 @@ export interface Seal extends ITuple<[ConsensusEngineId, Bytes]> {}
 export interface SealV0 extends ITuple<[u64, Signature]> {}
 
 /** @name SignedBlock */
-export interface SignedBlock extends SignedBlockWithJustifications {}
-
-/** @name SignedBlockWithJustification */
-export interface SignedBlockWithJustification extends Struct {
+export interface SignedBlock extends Struct {
   readonly block: Block;
-  readonly justification: Option<EncodedJustification>;
-}
-
-/** @name SignedBlockWithJustifications */
-export interface SignedBlockWithJustifications extends Struct {
-  readonly block: Block;
-  readonly justifications: Option<Justifications>;
+  readonly justification: Justification;
 }
 
 /** @name Slot */
@@ -322,22 +277,8 @@ export interface StorageProof extends Struct {
   readonly trieNodes: Vec<Bytes>;
 }
 
-/** @name TransactionInfo */
-export interface TransactionInfo extends Struct {
-  readonly chunkRoot: H256;
-  readonly contentHash: H256;
-  readonly dataSize: u32;
-  readonly blockChunks: u32;
-}
-
 /** @name TransactionPriority */
 export interface TransactionPriority extends u64 {}
-
-/** @name TransactionStorageProof */
-export interface TransactionStorageProof extends Struct {
-  readonly chunk: Bytes;
-  readonly proof: Vec<Bytes>;
-}
 
 /** @name U32F32 */
 export interface U32F32 extends UInt {}
