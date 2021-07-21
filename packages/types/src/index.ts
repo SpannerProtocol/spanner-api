@@ -30,4 +30,4 @@ export const rpc: Record<
 
 export const typesAlias: Record<string, OverrideModuleType> = spannerTypesAlias;
 
-export const typesBundle = spannerTypesBundle as unknown as OverrideBundleType;
+export const typesBundle: OverrideBundleType = spannerTypesBundle;
