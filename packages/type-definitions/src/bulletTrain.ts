@@ -13,7 +13,7 @@ export default {
       yield_total: 'Balance',
       maturity: 'BlockNumber'
     },
-    TravelCabinBuyerInfoV1: {
+    TravelCabinBuyerInfo: {
       buyer: 'Buyer',
       purchase_blk: 'BlockNumber',
       yield_withdrawn: 'Balance',
@@ -28,7 +28,7 @@ export default {
     DpoState: {
       _enum: ['CREATED', 'ACTIVE', 'RUNNING', 'FAILED', 'COMPLETED']
     },
-    TargetV1: {
+    Target: {
       _enum: {
         Dpo: '(DpoIndex, u8)',
         TravelCabin: 'TravelCabinIndex'
@@ -41,12 +41,12 @@ export default {
         InvalidBuyer: null
       }
     },
-    DpoInfoV1: {
+    DpoInfo: {
       index: 'DpoIndex',
       name: 'Text',
       token_id: 'CurrencyId',
       manager: 'AccountId',
-      target: 'TargetV1',
+      target: 'Target',
       target_maturity: 'BlockNumber',
       target_amount: 'Balance',
       target_yield_estimate: 'Balance',
@@ -71,7 +71,7 @@ export default {
       fee: 'u32',
       fee_slashed: 'bool'
     },
-    DpoMemberInfoV1: {
+    DpoMemberInfo: {
       buyer: 'Buyer',
       number_of_seats: 'u8',
       referrer: 'Referrer'
@@ -94,12 +94,12 @@ export default {
         'WithdrawOnFailure'
       ]
     },
-    DpoInfo: {
+    DpoInfoWithShare: {
       index: 'DpoIndex',
       name: 'Text',
       token_id: 'CurrencyId',
       manager: 'AccountId',
-      target: 'Target',
+      target: 'TargetWithBalance',
       target_maturity: 'BlockNumber',
       target_amount: 'Balance',
       target_yield_estimate: 'Balance',
@@ -126,18 +126,18 @@ export default {
       fare_withdrawn: 'bool',
       direct_referral_rate: 'u32'
     },
-    Target: {
+    TargetWithBalance: {
       _enum: {
         Dpo: '(DpoIndex, Balance)',
         TravelCabin: 'TravelCabinIndex'
       }
     },
-    DpoMemberInfo: {
+    DpoMemberInfoWithShare: {
       buyer: 'Buyer',
       share: 'Balance',
       referrer: 'Referrer'
     },
-    TravelCabinBuyerInfo: {
+    TravelCabinBuyerInfoFourRef: {
       buyer: 'Buyer',
       purchase_blk: 'BlockNumber',
       yield_withdrawn: 'Balance',
