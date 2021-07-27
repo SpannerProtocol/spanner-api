@@ -1,5 +1,9 @@
 export default {
   types: {
+    DpoInfo: 'DpoInfoV2',
+    Target: 'TargetV2',
+    DpoMemberInfo: 'DpoMemberInfoV2',
+    TravelCabinBuyerInfo: 'TravelCabinBuyerInfoV2',
     TravelCabinIndex: 'u32',
     TravelCabinInventoryIndex: 'u16',
     DpoIndex: 'u32',
@@ -13,7 +17,7 @@ export default {
       yield_total: 'Balance',
       maturity: 'BlockNumber'
     },
-    TravelCabinBuyerInfo: {
+    TravelCabinBuyerInfoV1: {
       buyer: 'Buyer',
       purchase_blk: 'BlockNumber',
       yield_withdrawn: 'Balance',
@@ -28,7 +32,7 @@ export default {
     DpoState: {
       _enum: ['CREATED', 'ACTIVE', 'RUNNING', 'FAILED', 'COMPLETED']
     },
-    Target: {
+    TargetV1: {
       _enum: {
         Dpo: '(DpoIndex, u8)',
         TravelCabin: 'TravelCabinIndex'
@@ -41,12 +45,12 @@ export default {
         InvalidBuyer: null
       }
     },
-    DpoInfo: {
+    DpoInfoV1: {
       index: 'DpoIndex',
       name: 'Text',
       token_id: 'CurrencyId',
       manager: 'AccountId',
-      target: 'Target',
+      target: 'TargetV1',
       target_maturity: 'BlockNumber',
       target_amount: 'Balance',
       target_yield_estimate: 'Balance',
@@ -71,7 +75,7 @@ export default {
       fee: 'u32',
       fee_slashed: 'bool'
     },
-    DpoMemberInfo: {
+    DpoMemberInfoV1: {
       buyer: 'Buyer',
       number_of_seats: 'u8',
       referrer: 'Referrer'
@@ -94,12 +98,12 @@ export default {
         'WithdrawOnFailure'
       ]
     },
-    DpoInfoWithShare: {
+    DpoInfoV2: {
       index: 'DpoIndex',
       name: 'Text',
       token_id: 'CurrencyId',
       manager: 'AccountId',
-      target: 'TargetWithBalance',
+      target: 'TargetV2',
       target_maturity: 'BlockNumber',
       target_amount: 'Balance',
       target_yield_estimate: 'Balance',
@@ -126,23 +130,24 @@ export default {
       fare_withdrawn: 'bool',
       direct_referral_rate: 'u32'
     },
-    TargetWithBalance: {
+    TargetV2: {
       _enum: {
         Dpo: '(DpoIndex, Balance)',
         TravelCabin: 'TravelCabinIndex'
       }
     },
-    DpoMemberInfoWithShare: {
+    DpoMemberInfoV2: {
       buyer: 'Buyer',
       share: 'Balance',
       referrer: 'Referrer'
     },
-    TravelCabinBuyerInfoFourRef: {
+    TravelCabinBuyerInfoV2: {
       buyer: 'Buyer',
       purchase_blk: 'BlockNumber',
       yield_withdrawn: 'Balance',
       fare_withdrawn: 'bool'
-    }
+    },
+
   },
   rpc: {
     getTravelCabinsOfAccount: {
