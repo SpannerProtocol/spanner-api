@@ -174,7 +174,7 @@
                             "yield_total": "Balance",
                             "maturity": "BlockNumber"
                         },
-                        "TravelCabinBuyerInfoV1": {
+                        "TravelCabinBuyerInfo": {
                             "buyer": "Buyer",
                             "purchase_blk": "BlockNumber",
                             "yield_withdrawn": "Balance",
@@ -195,7 +195,7 @@
                                 "COMPLETED"
                             ]
                         },
-                        "TargetV1": {
+                        "Target": {
                             "_enum": {
                                 "Dpo": "(DpoIndex, u8)",
                                 "TravelCabin": "TravelCabinIndex"
@@ -208,12 +208,12 @@
                                 "InvalidBuyer": null
                             }
                         },
-                        "DpoInfoV1": {
+                        "DpoInfo": {
                             "index": "DpoIndex",
                             "name": "Text",
                             "token_id": "CurrencyId",
                             "manager": "AccountId",
-                            "target": "TargetV1",
+                            "target": "Target",
                             "target_maturity": "BlockNumber",
                             "target_amount": "Balance",
                             "target_yield_estimate": "Balance",
@@ -238,7 +238,7 @@
                             "fee": "u32",
                             "fee_slashed": "bool"
                         },
-                        "DpoMemberInfoV1": {
+                        "DpoMemberInfo": {
                             "buyer": "Buyer",
                             "number_of_seats": "u8",
                             "referrer": "Referrer"
@@ -261,10 +261,55 @@
                                 "WithdrawOnFailure"
                             ]
                         },
-                        "DpoInfo": "DpoInfoV1",
-                        "Target": "TargetV1",
-                        "DpoMemberInfo": "DpoMemberInfoV1",
-                        "TravelCabinBuyerInfo": "TravelCabinBuyerInfoV1",
+                        "DpoInfoWithShare": {
+                            "index": "DpoIndex",
+                            "name": "Text",
+                            "token_id": "CurrencyId",
+                            "manager": "AccountId",
+                            "target": "TargetWithBalance",
+                            "target_maturity": "BlockNumber",
+                            "target_amount": "Balance",
+                            "target_yield_estimate": "Balance",
+                            "target_bonus_estimate": "Balance",
+                            "issued_shares": "Balance",
+                            "share_rate": "(Balance, Balance)",
+                            "fifo": "Vec<Buyer>",
+                            "base_fee": "u32",
+                            "fee": "u32",
+                            "fee_slashed": "bool",
+                            "vault_deposit": "Balance",
+                            "vault_withdraw": "Balance",
+                            "vault_yield": "Balance",
+                            "vault_bonus": "Balance",
+                            "total_fund": "Balance",
+                            "total_yield_received": "Balance",
+                            "total_bonus_received": "Balance",
+                            "total_milestone_received": "Balance",
+                            "blk_of_last_yield": "Option<BlockNumber>",
+                            "blk_of_dpo_filled": "Option<BlockNumber>",
+                            "expiry_blk": "BlockNumber",
+                            "state": "DpoState",
+                            "referrer": "Option<AccountId>",
+                            "fare_withdrawn": "bool",
+                            "direct_referral_rate": "u32"
+                        },
+                        "TargetWithBalance": {
+                            "_enum": {
+                                "Dpo": "(DpoIndex, Balance)",
+                                "TravelCabin": "TravelCabinIndex"
+                            }
+                        },
+                        "DpoMemberInfoWithShare": {
+                            "buyer": "Buyer",
+                            "share": "Balance",
+                            "referrer": "Referrer"
+                        },
+                        "TravelCabinBuyerInfoFourRef": {
+                            "buyer": "Buyer",
+                            "purchase_blk": "BlockNumber",
+                            "yield_withdrawn": "Balance",
+                            "fare_withdrawn": "bool"
+                        },
                         "ExchangeRate": "FixedU128",
                         "Ratio": "FixedU128",
                         "Rate": "FixedU128",
@@ -391,13 +436,7 @@
                             "yield_total": "Balance",
                             "maturity": "BlockNumber"
                         },
-                        "TravelCabinBuyerInfoV1": {
-                            "buyer": "Buyer",
-                            "purchase_blk": "BlockNumber",
-                            "yield_withdrawn": "Balance",
-                            "fare_withdrawn": "bool",
-                            "blk_of_last_withdraw": "BlockNumber"
-                        },
+                        "TravelCabinBuyerInfo": "TravelCabinBuyerInfoFourRef",
                         "MilestoneRewardInfo": {
                             "token_id": "CurrencyId",
                             "deposited": "Balance",
@@ -412,12 +451,7 @@
                                 "COMPLETED"
                             ]
                         },
-                        "TargetV1": {
-                            "_enum": {
-                                "Dpo": "(DpoIndex, u8)",
-                                "TravelCabin": "TravelCabinIndex"
-                            }
-                        },
+                        "Target": "TargetWithBalance",
                         "Buyer": {
                             "_enum": {
                                 "Dpo": "DpoIndex",
@@ -425,41 +459,8 @@
                                 "InvalidBuyer": null
                             }
                         },
-                        "DpoInfoV1": {
-                            "index": "DpoIndex",
-                            "name": "Text",
-                            "token_id": "CurrencyId",
-                            "manager": "AccountId",
-                            "target": "TargetV1",
-                            "target_maturity": "BlockNumber",
-                            "target_amount": "Balance",
-                            "target_yield_estimate": "Balance",
-                            "target_bonus_estimate": "Balance",
-                            "amount_per_seat": "Balance",
-                            "empty_seats": "u8",
-                            "fifo": "Vec<Buyer>",
-                            "vault_deposit": "Balance",
-                            "vault_withdraw": "Balance",
-                            "vault_yield": "Balance",
-                            "vault_bonus": "Balance",
-                            "total_yield_received": "Balance",
-                            "total_bonus_received": "Balance",
-                            "total_milestone_received": "Balance",
-                            "blk_of_last_yield": "Option<BlockNumber>",
-                            "blk_of_dpo_filled": "Option<BlockNumber>",
-                            "expiry_blk": "BlockNumber",
-                            "state": "DpoState",
-                            "referrer": "Option<AccountId>",
-                            "fare_withdrawn": "bool",
-                            "direct_referral_rate": "u32",
-                            "fee": "u32",
-                            "fee_slashed": "bool"
-                        },
-                        "DpoMemberInfoV1": {
-                            "buyer": "Buyer",
-                            "number_of_seats": "u8",
-                            "referrer": "Referrer"
-                        },
+                        "DpoInfo": "DpoInfoWithShare",
+                        "DpoMemberInfo": "DpoMemberInfoWithShare",
                         "Referrer": {
                             "_enum": {
                                 "None": null,
@@ -478,12 +479,12 @@
                                 "WithdrawOnFailure"
                             ]
                         },
-                        "DpoInfo": {
+                        "DpoInfoWithShare": {
                             "index": "DpoIndex",
                             "name": "Text",
                             "token_id": "CurrencyId",
                             "manager": "AccountId",
-                            "target": "Target",
+                            "target": "TargetWithBalance",
                             "target_maturity": "BlockNumber",
                             "target_amount": "Balance",
                             "target_yield_estimate": "Balance",
@@ -510,18 +511,18 @@
                             "fare_withdrawn": "bool",
                             "direct_referral_rate": "u32"
                         },
-                        "Target": {
+                        "TargetWithBalance": {
                             "_enum": {
                                 "Dpo": "(DpoIndex, Balance)",
                                 "TravelCabin": "TravelCabinIndex"
                             }
                         },
-                        "DpoMemberInfo": {
+                        "DpoMemberInfoWithShare": {
                             "buyer": "Buyer",
                             "share": "Balance",
                             "referrer": "Referrer"
                         },
-                        "TravelCabinBuyerInfo": {
+                        "TravelCabinBuyerInfoFourRef": {
                             "buyer": "Buyer",
                             "purchase_blk": "BlockNumber",
                             "yield_withdrawn": "Balance",
@@ -751,7 +752,7 @@
                             "yield_total": "Balance",
                             "maturity": "BlockNumber"
                         },
-                        "TravelCabinBuyerInfoV1": {
+                        "TravelCabinBuyerInfo": {
                             "buyer": "Buyer",
                             "purchase_blk": "BlockNumber",
                             "yield_withdrawn": "Balance",
@@ -772,7 +773,7 @@
                                 "COMPLETED"
                             ]
                         },
-                        "TargetV1": {
+                        "Target": {
                             "_enum": {
                                 "Dpo": "(DpoIndex, u8)",
                                 "TravelCabin": "TravelCabinIndex"
@@ -785,12 +786,12 @@
                                 "InvalidBuyer": null
                             }
                         },
-                        "DpoInfoV1": {
+                        "DpoInfo": {
                             "index": "DpoIndex",
                             "name": "Text",
                             "token_id": "CurrencyId",
                             "manager": "AccountId",
-                            "target": "TargetV1",
+                            "target": "Target",
                             "target_maturity": "BlockNumber",
                             "target_amount": "Balance",
                             "target_yield_estimate": "Balance",
@@ -815,7 +816,7 @@
                             "fee": "u32",
                             "fee_slashed": "bool"
                         },
-                        "DpoMemberInfoV1": {
+                        "DpoMemberInfo": {
                             "buyer": "Buyer",
                             "number_of_seats": "u8",
                             "referrer": "Referrer"
@@ -838,10 +839,55 @@
                                 "WithdrawOnFailure"
                             ]
                         },
-                        "DpoInfo": "DpoInfoV1",
-                        "Target": "TargetV1",
-                        "DpoMemberInfo": "DpoMemberInfoV1",
-                        "TravelCabinBuyerInfo": "TravelCabinBuyerInfoV1",
+                        "DpoInfoWithShare": {
+                            "index": "DpoIndex",
+                            "name": "Text",
+                            "token_id": "CurrencyId",
+                            "manager": "AccountId",
+                            "target": "TargetWithBalance",
+                            "target_maturity": "BlockNumber",
+                            "target_amount": "Balance",
+                            "target_yield_estimate": "Balance",
+                            "target_bonus_estimate": "Balance",
+                            "issued_shares": "Balance",
+                            "share_rate": "(Balance, Balance)",
+                            "fifo": "Vec<Buyer>",
+                            "base_fee": "u32",
+                            "fee": "u32",
+                            "fee_slashed": "bool",
+                            "vault_deposit": "Balance",
+                            "vault_withdraw": "Balance",
+                            "vault_yield": "Balance",
+                            "vault_bonus": "Balance",
+                            "total_fund": "Balance",
+                            "total_yield_received": "Balance",
+                            "total_bonus_received": "Balance",
+                            "total_milestone_received": "Balance",
+                            "blk_of_last_yield": "Option<BlockNumber>",
+                            "blk_of_dpo_filled": "Option<BlockNumber>",
+                            "expiry_blk": "BlockNumber",
+                            "state": "DpoState",
+                            "referrer": "Option<AccountId>",
+                            "fare_withdrawn": "bool",
+                            "direct_referral_rate": "u32"
+                        },
+                        "TargetWithBalance": {
+                            "_enum": {
+                                "Dpo": "(DpoIndex, Balance)",
+                                "TravelCabin": "TravelCabinIndex"
+                            }
+                        },
+                        "DpoMemberInfoWithShare": {
+                            "buyer": "Buyer",
+                            "share": "Balance",
+                            "referrer": "Referrer"
+                        },
+                        "TravelCabinBuyerInfoFourRef": {
+                            "buyer": "Buyer",
+                            "purchase_blk": "BlockNumber",
+                            "yield_withdrawn": "Balance",
+                            "fare_withdrawn": "bool"
+                        },
                         "ExchangeRate": "FixedU128",
                         "Ratio": "FixedU128",
                         "Rate": "FixedU128",
@@ -968,13 +1014,7 @@
                             "yield_total": "Balance",
                             "maturity": "BlockNumber"
                         },
-                        "TravelCabinBuyerInfoV1": {
-                            "buyer": "Buyer",
-                            "purchase_blk": "BlockNumber",
-                            "yield_withdrawn": "Balance",
-                            "fare_withdrawn": "bool",
-                            "blk_of_last_withdraw": "BlockNumber"
-                        },
+                        "TravelCabinBuyerInfo": "TravelCabinBuyerInfoFourRef",
                         "MilestoneRewardInfo": {
                             "token_id": "CurrencyId",
                             "deposited": "Balance",
@@ -989,12 +1029,7 @@
                                 "COMPLETED"
                             ]
                         },
-                        "TargetV1": {
-                            "_enum": {
-                                "Dpo": "(DpoIndex, u8)",
-                                "TravelCabin": "TravelCabinIndex"
-                            }
-                        },
+                        "Target": "TargetWithBalance",
                         "Buyer": {
                             "_enum": {
                                 "Dpo": "DpoIndex",
@@ -1002,41 +1037,8 @@
                                 "InvalidBuyer": null
                             }
                         },
-                        "DpoInfoV1": {
-                            "index": "DpoIndex",
-                            "name": "Text",
-                            "token_id": "CurrencyId",
-                            "manager": "AccountId",
-                            "target": "TargetV1",
-                            "target_maturity": "BlockNumber",
-                            "target_amount": "Balance",
-                            "target_yield_estimate": "Balance",
-                            "target_bonus_estimate": "Balance",
-                            "amount_per_seat": "Balance",
-                            "empty_seats": "u8",
-                            "fifo": "Vec<Buyer>",
-                            "vault_deposit": "Balance",
-                            "vault_withdraw": "Balance",
-                            "vault_yield": "Balance",
-                            "vault_bonus": "Balance",
-                            "total_yield_received": "Balance",
-                            "total_bonus_received": "Balance",
-                            "total_milestone_received": "Balance",
-                            "blk_of_last_yield": "Option<BlockNumber>",
-                            "blk_of_dpo_filled": "Option<BlockNumber>",
-                            "expiry_blk": "BlockNumber",
-                            "state": "DpoState",
-                            "referrer": "Option<AccountId>",
-                            "fare_withdrawn": "bool",
-                            "direct_referral_rate": "u32",
-                            "fee": "u32",
-                            "fee_slashed": "bool"
-                        },
-                        "DpoMemberInfoV1": {
-                            "buyer": "Buyer",
-                            "number_of_seats": "u8",
-                            "referrer": "Referrer"
-                        },
+                        "DpoInfo": "DpoInfoWithShare",
+                        "DpoMemberInfo": "DpoMemberInfoWithShare",
                         "Referrer": {
                             "_enum": {
                                 "None": null,
@@ -1055,12 +1057,12 @@
                                 "WithdrawOnFailure"
                             ]
                         },
-                        "DpoInfo": {
+                        "DpoInfoWithShare": {
                             "index": "DpoIndex",
                             "name": "Text",
                             "token_id": "CurrencyId",
                             "manager": "AccountId",
-                            "target": "Target",
+                            "target": "TargetWithBalance",
                             "target_maturity": "BlockNumber",
                             "target_amount": "Balance",
                             "target_yield_estimate": "Balance",
@@ -1087,18 +1089,18 @@
                             "fare_withdrawn": "bool",
                             "direct_referral_rate": "u32"
                         },
-                        "Target": {
+                        "TargetWithBalance": {
                             "_enum": {
                                 "Dpo": "(DpoIndex, Balance)",
                                 "TravelCabin": "TravelCabinIndex"
                             }
                         },
-                        "DpoMemberInfo": {
+                        "DpoMemberInfoWithShare": {
                             "buyer": "Buyer",
                             "share": "Balance",
                             "referrer": "Referrer"
                         },
-                        "TravelCabinBuyerInfo": {
+                        "TravelCabinBuyerInfoFourRef": {
                             "buyer": "Buyer",
                             "purchase_blk": "BlockNumber",
                             "yield_withdrawn": "Balance",

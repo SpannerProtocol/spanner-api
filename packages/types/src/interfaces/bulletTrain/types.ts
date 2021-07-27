@@ -29,6 +29,38 @@ export interface DpoInfo extends Struct {
   readonly target_amount: Balance;
   readonly target_yield_estimate: Balance;
   readonly target_bonus_estimate: Balance;
+  readonly amount_per_seat: Balance;
+  readonly empty_seats: u8;
+  readonly fifo: Vec<Buyer>;
+  readonly vault_deposit: Balance;
+  readonly vault_withdraw: Balance;
+  readonly vault_yield: Balance;
+  readonly vault_bonus: Balance;
+  readonly total_yield_received: Balance;
+  readonly total_bonus_received: Balance;
+  readonly total_milestone_received: Balance;
+  readonly blk_of_last_yield: Option<BlockNumber>;
+  readonly blk_of_dpo_filled: Option<BlockNumber>;
+  readonly expiry_blk: BlockNumber;
+  readonly state: DpoState;
+  readonly referrer: Option<AccountId>;
+  readonly fare_withdrawn: bool;
+  readonly direct_referral_rate: u32;
+  readonly fee: u32;
+  readonly fee_slashed: bool;
+}
+
+/** @name DpoInfoWithShare */
+export interface DpoInfoWithShare extends Struct {
+  readonly index: DpoIndex;
+  readonly name: Text;
+  readonly token_id: CurrencyId;
+  readonly manager: AccountId;
+  readonly target: TargetWithBalance;
+  readonly target_maturity: BlockNumber;
+  readonly target_amount: Balance;
+  readonly target_yield_estimate: Balance;
+  readonly target_bonus_estimate: Balance;
   readonly issued_shares: Balance;
   readonly share_rate: ITuple<[Balance, Balance]>;
   readonly fifo: Vec<Buyer>;
@@ -52,49 +84,17 @@ export interface DpoInfo extends Struct {
   readonly direct_referral_rate: u32;
 }
 
-/** @name DpoInfoV1 */
-export interface DpoInfoV1 extends Struct {
-  readonly index: DpoIndex;
-  readonly name: Text;
-  readonly token_id: CurrencyId;
-  readonly manager: AccountId;
-  readonly target: TargetV1;
-  readonly target_maturity: BlockNumber;
-  readonly target_amount: Balance;
-  readonly target_yield_estimate: Balance;
-  readonly target_bonus_estimate: Balance;
-  readonly amount_per_seat: Balance;
-  readonly empty_seats: u8;
-  readonly fifo: Vec<Buyer>;
-  readonly vault_deposit: Balance;
-  readonly vault_withdraw: Balance;
-  readonly vault_yield: Balance;
-  readonly vault_bonus: Balance;
-  readonly total_yield_received: Balance;
-  readonly total_bonus_received: Balance;
-  readonly total_milestone_received: Balance;
-  readonly blk_of_last_yield: Option<BlockNumber>;
-  readonly blk_of_dpo_filled: Option<BlockNumber>;
-  readonly expiry_blk: BlockNumber;
-  readonly state: DpoState;
-  readonly referrer: Option<AccountId>;
-  readonly fare_withdrawn: bool;
-  readonly direct_referral_rate: u32;
-  readonly fee: u32;
-  readonly fee_slashed: bool;
-}
-
 /** @name DpoMemberInfo */
 export interface DpoMemberInfo extends Struct {
   readonly buyer: Buyer;
-  readonly share: Balance;
+  readonly number_of_seats: u8;
   readonly referrer: Referrer;
 }
 
-/** @name DpoMemberInfoV1 */
-export interface DpoMemberInfoV1 extends Struct {
+/** @name DpoMemberInfoWithShare */
+export interface DpoMemberInfoWithShare extends Struct {
   readonly buyer: Buyer;
-  readonly number_of_seats: u8;
+  readonly share: Balance;
   readonly referrer: Referrer;
 }
 
@@ -137,15 +137,15 @@ export interface Referrer extends Enum {
 /** @name Target */
 export interface Target extends Enum {
   readonly isDpo: boolean;
-  readonly asDpo: ITuple<[DpoIndex, Balance]>;
+  readonly asDpo: ITuple<[DpoIndex, u8]>;
   readonly isTravelCabin: boolean;
   readonly asTravelCabin: TravelCabinIndex;
 }
 
-/** @name TargetV1 */
-export interface TargetV1 extends Enum {
+/** @name TargetWithBalance */
+export interface TargetWithBalance extends Enum {
   readonly isDpo: boolean;
-  readonly asDpo: ITuple<[DpoIndex, u8]>;
+  readonly asDpo: ITuple<[DpoIndex, Balance]>;
   readonly isTravelCabin: boolean;
   readonly asTravelCabin: TravelCabinIndex;
 }
@@ -156,15 +156,15 @@ export interface TravelCabinBuyerInfo extends Struct {
   readonly purchase_blk: BlockNumber;
   readonly yield_withdrawn: Balance;
   readonly fare_withdrawn: bool;
+  readonly blk_of_last_withdraw: BlockNumber;
 }
 
-/** @name TravelCabinBuyerInfoV1 */
-export interface TravelCabinBuyerInfoV1 extends Struct {
+/** @name TravelCabinBuyerInfoFourRef */
+export interface TravelCabinBuyerInfoFourRef extends Struct {
   readonly buyer: Buyer;
   readonly purchase_blk: BlockNumber;
   readonly yield_withdrawn: Balance;
   readonly fare_withdrawn: bool;
-  readonly blk_of_last_withdraw: BlockNumber;
 }
 
 /** @name TravelCabinIndex */

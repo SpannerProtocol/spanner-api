@@ -52,7 +52,7 @@ import type { Bounty, BountyIndex, BountyStatus, BountyStatusActive, BountyStatu
 import type { Multiplier } from '@polkadot/types/interfaces/txpayment';
 import type { Multisig, Timepoint } from '@polkadot/types/interfaces/utility';
 import type { VestingInfo } from '@polkadot/types/interfaces/vesting';
-import type { Buyer, DpoIndex, DpoInfo, DpoInfoV1, DpoMemberInfo, DpoMemberInfoV1, DpoState, MilestoneRewardInfo, PaymentType, Referrer, Target, TargetV1, TravelCabinBuyerInfo, TravelCabinBuyerInfoV1, TravelCabinIndex, TravelCabinInfo, TravelCabinInventoryIndex } from 'packages/types/src/interfaces/bulletTrain';
+import type { Buyer, DpoIndex, DpoInfo, DpoInfoWithShare, DpoMemberInfo, DpoMemberInfoWithShare, DpoState, MilestoneRewardInfo, PaymentType, Referrer, Target, TargetWithBalance, TravelCabinBuyerInfo, TravelCabinBuyerInfoFourRef, TravelCabinIndex, TravelCabinInfo, TravelCabinInventoryIndex } from 'packages/types/src/interfaces/bulletTrain';
 import type { ExchangeRate, Price, Rate, Ratio } from 'packages/types/src/interfaces/common';
 import type { TradingPair, TradingPairProvisionParameters, TradingPairStatus } from 'packages/types/src/interfaces/dex';
 import type { Amount, AmountOf, CurrencyId, CurrencyIdOf, TokenSymbol } from 'packages/types/src/interfaces/primitives';
@@ -343,9 +343,9 @@ declare module '@polkadot/types/types/registry' {
     'Option<DownwardMessage>': Option<DownwardMessage>;
     'Option<DpoIndex>': Option<DpoIndex>;
     'Option<DpoInfo>': Option<DpoInfo>;
-    'Option<DpoInfoV1>': Option<DpoInfoV1>;
+    'Option<DpoInfoWithShare>': Option<DpoInfoWithShare>;
     'Option<DpoMemberInfo>': Option<DpoMemberInfo>;
-    'Option<DpoMemberInfoV1>': Option<DpoMemberInfoV1>;
+    'Option<DpoMemberInfoWithShare>': Option<DpoMemberInfoWithShare>;
     'Option<DpoState>': Option<DpoState>;
     'Option<EcdsaSignature>': Option<EcdsaSignature>;
     'Option<Ed25519Signature>': Option<Ed25519Signature>;
@@ -839,7 +839,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<SystemOrigin>': Option<SystemOrigin>;
     'Option<Tally>': Option<Tally>;
     'Option<Target>': Option<Target>;
-    'Option<TargetV1>': Option<TargetV1>;
+    'Option<TargetWithBalance>': Option<TargetWithBalance>;
     'Option<TaskAddress>': Option<TaskAddress>;
     'Option<TAssetBalance>': Option<TAssetBalance>;
     'Option<TAssetDepositBalance>': Option<TAssetDepositBalance>;
@@ -856,7 +856,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<TransactionValidityError>': Option<TransactionValidityError>;
     'Option<TransientValidationData>': Option<TransientValidationData>;
     'Option<TravelCabinBuyerInfo>': Option<TravelCabinBuyerInfo>;
-    'Option<TravelCabinBuyerInfoV1>': Option<TravelCabinBuyerInfoV1>;
+    'Option<TravelCabinBuyerInfoFourRef>': Option<TravelCabinBuyerInfoFourRef>;
     'Option<TravelCabinIndex>': Option<TravelCabinIndex>;
     'Option<TravelCabinInfo>': Option<TravelCabinInfo>;
     'Option<TravelCabinInventoryIndex>': Option<TravelCabinInventoryIndex>;
@@ -1124,9 +1124,9 @@ declare module '@polkadot/types/types/registry' {
     'Vec<DownwardMessage>': Vec<DownwardMessage>;
     'Vec<DpoIndex>': Vec<DpoIndex>;
     'Vec<DpoInfo>': Vec<DpoInfo>;
-    'Vec<DpoInfoV1>': Vec<DpoInfoV1>;
+    'Vec<DpoInfoWithShare>': Vec<DpoInfoWithShare>;
     'Vec<DpoMemberInfo>': Vec<DpoMemberInfo>;
-    'Vec<DpoMemberInfoV1>': Vec<DpoMemberInfoV1>;
+    'Vec<DpoMemberInfoWithShare>': Vec<DpoMemberInfoWithShare>;
     'Vec<DpoState>': Vec<DpoState>;
     'Vec<EcdsaSignature>': Vec<EcdsaSignature>;
     'Vec<Ed25519Signature>': Vec<Ed25519Signature>;
@@ -1620,7 +1620,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<SystemOrigin>': Vec<SystemOrigin>;
     'Vec<Tally>': Vec<Tally>;
     'Vec<Target>': Vec<Target>;
-    'Vec<TargetV1>': Vec<TargetV1>;
+    'Vec<TargetWithBalance>': Vec<TargetWithBalance>;
     'Vec<TaskAddress>': Vec<TaskAddress>;
     'Vec<TAssetBalance>': Vec<TAssetBalance>;
     'Vec<TAssetDepositBalance>': Vec<TAssetDepositBalance>;
@@ -1637,7 +1637,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<TransactionValidityError>': Vec<TransactionValidityError>;
     'Vec<TransientValidationData>': Vec<TransientValidationData>;
     'Vec<TravelCabinBuyerInfo>': Vec<TravelCabinBuyerInfo>;
-    'Vec<TravelCabinBuyerInfoV1>': Vec<TravelCabinBuyerInfoV1>;
+    'Vec<TravelCabinBuyerInfoFourRef>': Vec<TravelCabinBuyerInfoFourRef>;
     'Vec<TravelCabinIndex>': Vec<TravelCabinIndex>;
     'Vec<TravelCabinInfo>': Vec<TravelCabinInfo>;
     'Vec<TravelCabinInventoryIndex>': Vec<TravelCabinInventoryIndex>;
@@ -1905,9 +1905,9 @@ declare module '@polkadot/types/types/registry' {
     DownwardMessage: DownwardMessage;
     DpoIndex: DpoIndex;
     DpoInfo: DpoInfo;
-    DpoInfoV1: DpoInfoV1;
+    DpoInfoWithShare: DpoInfoWithShare;
     DpoMemberInfo: DpoMemberInfo;
-    DpoMemberInfoV1: DpoMemberInfoV1;
+    DpoMemberInfoWithShare: DpoMemberInfoWithShare;
     DpoState: DpoState;
     EcdsaSignature: EcdsaSignature;
     Ed25519Signature: Ed25519Signature;
@@ -2401,7 +2401,7 @@ declare module '@polkadot/types/types/registry' {
     SystemOrigin: SystemOrigin;
     Tally: Tally;
     Target: Target;
-    TargetV1: TargetV1;
+    TargetWithBalance: TargetWithBalance;
     TaskAddress: TaskAddress;
     TAssetBalance: TAssetBalance;
     TAssetDepositBalance: TAssetDepositBalance;
@@ -2418,7 +2418,7 @@ declare module '@polkadot/types/types/registry' {
     TransactionValidityError: TransactionValidityError;
     TransientValidationData: TransientValidationData;
     TravelCabinBuyerInfo: TravelCabinBuyerInfo;
-    TravelCabinBuyerInfoV1: TravelCabinBuyerInfoV1;
+    TravelCabinBuyerInfoFourRef: TravelCabinBuyerInfoFourRef;
     TravelCabinIndex: TravelCabinIndex;
     TravelCabinInfo: TravelCabinInfo;
     TravelCabinInventoryIndex: TravelCabinInventoryIndex;
