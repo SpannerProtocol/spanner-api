@@ -3,16 +3,16 @@ import type { OverrideVersionedType } from '@polkadot/types/types';
 const versioned: OverrideVersionedType[] = [
   {
     minmax: [0, 104],
-    types: {}
+    types: {
+      DpoInfo: 'DpoInfoV1',
+      Target: 'TargetV1',
+      DpoMemberInfo: 'DpoMemberInfoV1',
+      TravelCabinBuyerInfo: 'TravelCabinBuyerInfoV1'
+    }
   },
   {
     minmax: [105, undefined],
-    types: {
-      DpoInfo: 'DpoInfoWithShare',
-      Target: 'TargetWithBalance',
-      DpoMemberInfo: 'DpoMemberInfoWithShare',
-      TravelCabinBuyerInfo: 'TravelCabinBuyerInfoFourRef'
-    }
+    types: {}
   }
 ];
 
