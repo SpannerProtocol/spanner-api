@@ -19,12 +19,15 @@ export interface Buyer extends Enum {
 export interface DpoIndex extends u32 {}
 
 /** @name DpoInfo */
-export interface DpoInfo extends Struct {
+export interface DpoInfo extends DpoInfoV2 {}
+
+/** @name DpoInfoV1 */
+export interface DpoInfoV1 extends Struct {
   readonly index: DpoIndex;
   readonly name: Text;
   readonly token_id: CurrencyId;
   readonly manager: AccountId;
-  readonly target: Target;
+  readonly target: TargetV1;
   readonly target_maturity: BlockNumber;
   readonly target_amount: Balance;
   readonly target_yield_estimate: Balance;
@@ -50,13 +53,13 @@ export interface DpoInfo extends Struct {
   readonly fee_slashed: bool;
 }
 
-/** @name DpoInfoWithShare */
-export interface DpoInfoWithShare extends Struct {
+/** @name DpoInfoV2 */
+export interface DpoInfoV2 extends Struct {
   readonly index: DpoIndex;
   readonly name: Text;
   readonly token_id: CurrencyId;
   readonly manager: AccountId;
-  readonly target: TargetWithBalance;
+  readonly target: TargetV2;
   readonly target_maturity: BlockNumber;
   readonly target_amount: Balance;
   readonly target_yield_estimate: Balance;
@@ -85,14 +88,17 @@ export interface DpoInfoWithShare extends Struct {
 }
 
 /** @name DpoMemberInfo */
-export interface DpoMemberInfo extends Struct {
+export interface DpoMemberInfo extends DpoMemberInfoV2 {}
+
+/** @name DpoMemberInfoV1 */
+export interface DpoMemberInfoV1 extends Struct {
   readonly buyer: Buyer;
   readonly number_of_seats: u8;
   readonly referrer: Referrer;
 }
 
-/** @name DpoMemberInfoWithShare */
-export interface DpoMemberInfoWithShare extends Struct {
+/** @name DpoMemberInfoV2 */
+export interface DpoMemberInfoV2 extends Struct {
   readonly buyer: Buyer;
   readonly share: Balance;
   readonly referrer: Referrer;
@@ -135,15 +141,18 @@ export interface Referrer extends Enum {
 }
 
 /** @name Target */
-export interface Target extends Enum {
+export interface Target extends TargetV2 {}
+
+/** @name TargetV1 */
+export interface TargetV1 extends Enum {
   readonly isDpo: boolean;
   readonly asDpo: ITuple<[DpoIndex, u8]>;
   readonly isTravelCabin: boolean;
   readonly asTravelCabin: TravelCabinIndex;
 }
 
-/** @name TargetWithBalance */
-export interface TargetWithBalance extends Enum {
+/** @name TargetV2 */
+export interface TargetV2 extends Enum {
   readonly isDpo: boolean;
   readonly asDpo: ITuple<[DpoIndex, Balance]>;
   readonly isTravelCabin: boolean;
@@ -151,7 +160,10 @@ export interface TargetWithBalance extends Enum {
 }
 
 /** @name TravelCabinBuyerInfo */
-export interface TravelCabinBuyerInfo extends Struct {
+export interface TravelCabinBuyerInfo extends TravelCabinBuyerInfoV2 {}
+
+/** @name TravelCabinBuyerInfoV1 */
+export interface TravelCabinBuyerInfoV1 extends Struct {
   readonly buyer: Buyer;
   readonly purchase_blk: BlockNumber;
   readonly yield_withdrawn: Balance;
@@ -159,8 +171,8 @@ export interface TravelCabinBuyerInfo extends Struct {
   readonly blk_of_last_withdraw: BlockNumber;
 }
 
-/** @name TravelCabinBuyerInfoFourRef */
-export interface TravelCabinBuyerInfoFourRef extends Struct {
+/** @name TravelCabinBuyerInfoV2 */
+export interface TravelCabinBuyerInfoV2 extends Struct {
   readonly buyer: Buyer;
   readonly purchase_blk: BlockNumber;
   readonly yield_withdrawn: Balance;
