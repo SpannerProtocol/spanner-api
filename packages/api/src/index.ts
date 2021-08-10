@@ -1,7 +1,5 @@
 import { ApiOptions } from '@polkadot/api/types';
-import {
-  typesBundle as spannerTypesBundle
-} from '../../types/src';
+import { typesBundle as spannerTypesBundle } from '../../types/src';
 
 export const options = ({
   types = {},
@@ -21,7 +19,7 @@ export const options = ({
       hammer: {
         ...spannerTypesBundle?.spec?.hammer,
         ...typesBundle?.spec?.hammer
-      },
+      }
     }
   },
   ...otherOptions

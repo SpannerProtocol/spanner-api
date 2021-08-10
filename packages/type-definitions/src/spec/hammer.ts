@@ -12,8 +12,7 @@ const versioned: OverrideVersionedType[] = [
   },
   {
     minmax: [105, undefined],
-    types: {
-    }
+    types: {}
   }
 ];
 

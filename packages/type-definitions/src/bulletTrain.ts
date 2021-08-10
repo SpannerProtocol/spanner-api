@@ -146,8 +146,7 @@ export default {
       purchase_blk: 'BlockNumber',
       yield_withdrawn: 'Balance',
       fare_withdrawn: 'bool'
-    },
-
+    }
   },
   rpc: {
     getTravelCabinsOfAccount: {
